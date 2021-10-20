@@ -1,13 +1,14 @@
 var express = require('express');
 var app = express();
 var cors = require('cors');
+var sortJsonArray = require('sort-json-array');
 app.use(cors());
 
 
 const fs = require("fs");
 
 app.get('/api/partners_in_range', function (req, res) {
-   result=getPartnersbyDistance(req.query.range,req.query.lat,req.query.lng,app.locals.partners);
+   result=sortJsonArray(getPartnersbyDistance(req.query.range,req.query.lat,req.query.lng,app.locals.partners),'organization','asc');
    res.setHeader('Content-Type', 'application/json');
    res.send(JSON.stringify(result));
 })
