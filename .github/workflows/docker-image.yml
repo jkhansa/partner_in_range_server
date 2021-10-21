@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag jaafarkhansa/partner_in_range_server
+    - name: Login to Docker Hub
+      run: docker login --username "${{ secrets.DOCKERHUB_USER }}" --password "${{ secrets.DOCKERHUB_PASS }}"
+    - name: Push the Docker Image
+      run: docker push jaafarkhansa/partner_in_range_server
