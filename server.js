@@ -18,7 +18,7 @@ var server = app.listen(8081, function () {
    var host = server.address().address
    var port = server.address().port
    app.locals.partners=readPartners_2();
-   console.log("Example app listening at http://%s:%s", host, port)
+   console.log("partner in range app api listening at http://%s:%s", host, port)
 
 })
 
