@@ -8,6 +8,7 @@ app.use(cors());
 const fs = require("fs");
 
 app.get('/api/partners_in_range', function (req, res) {
+   console.log("api reached");
    result=sortJsonArray(getPartnersbyDistance(req.query.range,req.query.lat,req.query.lng,app.locals.partners),'organization','asc');
    res.setHeader('Content-Type', 'application/json');
    res.send(JSON.stringify(result));
